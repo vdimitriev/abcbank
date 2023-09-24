@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Vlado Dimitriev\",\n    \"username\": \"vdimitriev\",\n    \"address\": \"Negotino\",\n    \"country\": \"Macedonia\",\n    \"dateOfBirth\": \"09-06-1969\",\n    \"document\": {\n        \"number\": \"ID123\",\n        \"type\": \"ID card\",\n        \"issuingCountry\": \"MKD\",\n        \"issueDate\": \"01-01-1970\",\n        \"expiryDate\": \"01-01-2070\"\n    }\n}",
+					"raw": "{\n    \"name\": \"Test Test\",\n    \"username\": \"test\",\n    \"address\": \"Address\",\n    \"country\": \"MKD\",\n    \"dateOfBirth\": \"09-06-1969\",\n    \"document\": {\n        \"number\": \"ID123\",\n        \"type\": \"ID card\",\n        \"country\": \"MKD\",\n        \"issued\": \"01-01-1970\",\n        \"expiring\": \"01-01-2070\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
