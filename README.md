@@ -1,6 +1,6 @@
 ### ABC bank application
 
-#### Run with 
+#### Run the application with 
 
 >docker-compose up --build
 

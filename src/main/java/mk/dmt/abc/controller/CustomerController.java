@@ -2,7 +2,7 @@ package mk.dmt.abc.controller;
 
 import mk.dmt.abc.model.Customer;
 import mk.dmt.abc.model.CustomerResponse;
-import mk.dmt.abc.service.CustomerService;
+import mk.dmt.abc.service.RateLimitedService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/register")
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final RateLimitedService rateLimitedService;
 
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    public CustomerController(RateLimitedService rateLimitedService) {
+        this.rateLimitedService = rateLimitedService;
     }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomerResponse> register(@RequestBody Customer customer) {
-        final CustomerResponse response = customerService.registerNewCustomer(customer);
+        final CustomerResponse response = rateLimitedService.registerNewCustomer(customer);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

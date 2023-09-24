@@ -20,7 +20,7 @@ public class CustomerService {
         this.customerMapper = customerMapper;
     }
 
-    @RateLimiter(name = "basic")
+
     public CustomerResponse registerNewCustomer(final Customer customer) {
         final CustomerEntity customerEntity = customerMapper.apply(customer);
         final CustomerEntity responseEntity = customerRepository.save(customerEntity);
