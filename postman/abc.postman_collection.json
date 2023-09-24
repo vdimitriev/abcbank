@@ -38,7 +38,18 @@
 			"name": "logon",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/logon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"logon"
+					]
+				}
 			},
 			"response": []
 		},
@@ -46,7 +57,19 @@
 			"name": "overview",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/overview/NL95ABCB0000000001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"overview",
+						"NL95ABCB0000000001"
+					]
+				}
 			},
 			"response": []
 		}
