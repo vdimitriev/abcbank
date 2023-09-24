@@ -2,8 +2,10 @@
 
 #### Run with 
 
->docker-compose up
+>docker-compose up --build
+
+### Swagger
+
+http://localhost:8080/swagger-ui/index.html
 
 #### Test with Postman
-
->http://localhost:8080
