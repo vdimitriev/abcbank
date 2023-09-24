@@ -11,4 +11,6 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long>  {
     @Query("SELECT acc.iban FROM AccountEntity acc WHERE acc.id=(select max(id) from AccountEntity)")
     Optional<String> findLastIbanNumber();
 
+    Optional<AccountEntity> findByIban(String iban);
+
 }

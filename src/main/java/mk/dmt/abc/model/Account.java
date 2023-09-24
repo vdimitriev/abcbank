@@ -1,12 +1,13 @@
 package mk.dmt.abc.model;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 public class Account {
 
     private String iban;
 
-    private String balance;
+    private BigDecimal balance;
 
     private String type;
 
@@ -22,11 +23,11 @@ public class Account {
         this.iban = iban;
     }
 
-    public String getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

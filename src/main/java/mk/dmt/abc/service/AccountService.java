@@ -1,5 +1,7 @@
 package mk.dmt.abc.service;
 
+import mk.dmt.abc.entity.AccountEntity;
+import mk.dmt.abc.mapper.AccountMapper;
 import mk.dmt.abc.model.Account;
 import mk.dmt.abc.repository.AccountRepository;
 import org.springframework.stereotype.Component;
@@ -11,13 +13,19 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public AccountService(AccountRepository accountRepository) {
+    private final AccountMapper accountMapper;
+
+    public AccountService(AccountRepository accountRepository, AccountMapper accountMapper) {
         this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
     }
 
 
-    public Account findAccount(String accountNumber) {
-        return null;
+    public Account findAccount(String iban) {
+        final Optional<AccountEntity> accountEntityOpt = accountRepository.findByIban(iban);
+        if(accountEntityOpt.isEmpty()) return null;
+        final AccountEntity accountEntity = accountEntityOpt.get();
+        return accountMapper.apply(accountEntity);
     }
 
     public String findNextAccountNumber() {
