@@ -2,7 +2,7 @@
 
 #### Run the application with 
 
->docker-compose up --build
+>docker-compose up
 
 ### Swagger
 
