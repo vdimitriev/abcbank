@@ -21,14 +21,11 @@ public class CustomerDetailsService implements UserDetailsService {
 
     @Transactional
     public CustomerDetails loadUserByUsername(String username) throws CustomerNotFoundException {
-        System.out.println("loadUserByUsername " + username);
         Optional<CustomerEntity> customerEntityOptional = customerRepository.findByUsername(username);
         if(customerEntityOptional.isEmpty()) {
-            System.out.println("Customer Not Found with username: " + username);
             throw new CustomerNotFoundException("Customer Not Found with username: " + username);
         }
         CustomerEntity customer = customerEntityOptional.get();
-        System.out.println("loadUserByUsername customer = " + customer);
         return new CustomerDetails(customer.getUsername(), customer.getPassword());
     }
 }

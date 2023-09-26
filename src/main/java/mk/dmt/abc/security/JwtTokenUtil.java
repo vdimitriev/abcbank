@@ -1,4 +1,4 @@
-package mk.dmt.abc.config;
+package mk.dmt.abc.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

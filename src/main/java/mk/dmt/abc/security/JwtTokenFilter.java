@@ -1,4 +1,4 @@
-package mk.dmt.abc.config;
+package mk.dmt.abc.security;
 
 import mk.dmt.abc.repository.CustomerRepository;
 import mk.dmt.abc.security.model.CustomerDetails;
@@ -35,14 +35,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // Get authorization header and validate
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("header = " + header);
         if (Strings.isEmpty(header) || !header.startsWith("Bearer ")) {
             chain.doFilter(request, response);
             return;
         }
         // Get jwt token and validate
         final String token = header.split(" ")[1].trim();
-        System.out.println("token = " + token);
         if (!jwtTokenUtil.validate(token)) {
             chain.doFilter(request, response);
             return;
@@ -53,7 +51,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 .map(customerEntity -> new CustomerDetails(customerEntity.getUsername(), customerEntity.getPassword()))
                 .orElse(null);
 
-        System.out.println("userDetails = " + userDetails.getUsername());
         UsernamePasswordAuthenticationToken authentication =
             new UsernamePasswordAuthenticationToken(
                 userDetails,
@@ -61,7 +58,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 userDetails == null ? new ArrayList() : userDetails.getAuthorities()
             );
 
-        System.out.println("authentication = " + authentication.getName());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(request, response);

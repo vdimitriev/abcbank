@@ -5,6 +5,7 @@ import mk.dmt.abc.entity.AccountEntity;
 import mk.dmt.abc.entity.CustomerEntity;
 import mk.dmt.abc.entity.DocumentEntity;
 import mk.dmt.abc.model.Customer;
+import mk.dmt.abc.model.CustomerPassword;
 import mk.dmt.abc.model.Document;
 import mk.dmt.abc.service.AccountService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,7 +39,9 @@ public class CustomerMapper {
         customerEntity.setDateOfBirth(customerModel.getDateOfBirth());
         customerEntity.setUsername(customerModel.getUsername());
         customerEntity.setCustomerId(UUID.randomUUID().toString());
-        customerEntity.setPassword(generatePassword());
+        CustomerPassword customerPassword = generatePassword();
+        customerEntity.setPassword(customerPassword.getEncryptedPassword());
+        customerEntity.setPlainPassword(customerPassword.getPlainPassword());
         customerEntity.setCountry(customerModel.getCountry());
         final DocumentEntity documentEntity = new DocumentEntity();
         final Document documentModel = customerModel.getDocument();
@@ -60,15 +63,13 @@ public class CustomerMapper {
         return customerEntity;
     }
 
-    public String generatePassword() {
+    public CustomerPassword generatePassword() {
         final String password = new Random()
                 .ints(10, 33, 122)
                 .mapToObj(i -> String.valueOf((char)i))
                 .collect(Collectors.joining());
-        System.out.println("Password = " + password);
         final String encoded = passwordEncoder.encode(password);
-        System.out.println("Encoded password = " + encoded);
-        return encoded;
+        return new CustomerPassword(encoded, password);
     }
 
     private String generateIbanNumber() {

@@ -52,6 +52,9 @@ public class CustomerEntity {
     @Column(name = "password")
     private String password;
 
+    @Transient
+    private String plainPassword;
+
     public DocumentEntity getDocument() {
         return document;
     }
@@ -130,5 +133,13 @@ public class CustomerEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPlainPassword() {
+        return plainPassword;
+    }
+
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
     }
 }

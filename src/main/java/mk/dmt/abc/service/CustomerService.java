@@ -24,7 +24,7 @@ public class CustomerService {
     public CustomerResponse registerNewCustomer(final Customer customer) {
         final CustomerEntity customerEntity = customerMapper.apply(customer);
         final CustomerEntity responseEntity = customerRepository.save(customerEntity);
-        return new CustomerResponse(responseEntity.getUsername(), responseEntity.getPassword());
+        return new CustomerResponse(responseEntity.getUsername(), responseEntity.getPlainPassword());
     }
 
 }

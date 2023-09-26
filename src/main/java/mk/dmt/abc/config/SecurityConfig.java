@@ -1,6 +1,7 @@
 package mk.dmt.abc.config;
 
 import mk.dmt.abc.security.CustomerDetailsService;
+import mk.dmt.abc.security.JwtTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -53,7 +54,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeRequests()
             .antMatchers("/", "/login", "/logon", "/register", "/access-denied").permitAll()
-            .antMatchers(HttpMethod.GET, "/overview/**").authenticated();
+            .antMatchers(HttpMethod.GET, "/overview/**").hasAnyAuthority("customer");
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
