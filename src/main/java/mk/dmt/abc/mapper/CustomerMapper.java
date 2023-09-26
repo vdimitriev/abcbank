@@ -7,6 +7,7 @@ import mk.dmt.abc.entity.DocumentEntity;
 import mk.dmt.abc.model.Customer;
 import mk.dmt.abc.model.Document;
 import mk.dmt.abc.service.AccountService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -22,9 +23,12 @@ public class CustomerMapper {
 
     private final Mod97_10 mod9710;
 
-    public CustomerMapper(AccountService accountService, Mod97_10 mod9710) {
+    private final PasswordEncoder passwordEncoder;
+
+    public CustomerMapper(AccountService accountService, Mod97_10 mod9710, PasswordEncoder passwordEncoder) {
         this.accountService = accountService;
         this.mod9710 = mod9710;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public CustomerEntity apply(Customer customerModel) {
@@ -61,7 +65,10 @@ public class CustomerMapper {
                 .ints(10, 33, 122)
                 .mapToObj(i -> String.valueOf((char)i))
                 .collect(Collectors.joining());
-        return password;
+        System.out.println("Password = " + password);
+        final String encoded = passwordEncoder.encode(password);
+        System.out.println("Encoded password = " + encoded);
+        return encoded;
     }
 
     private String generateIbanNumber() {
