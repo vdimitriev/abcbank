@@ -1,6 +1,6 @@
 package mk.dmt.abc.mapper;
 
-import mk.dmt.abc.algorithm.Mod97_10;
+import mk.dmt.abc.algorithm.ChecksumCalculator;
 import mk.dmt.abc.entity.AccountEntity;
 import mk.dmt.abc.entity.CustomerEntity;
 import mk.dmt.abc.entity.DocumentEntity;
@@ -22,11 +22,11 @@ public class CustomerMapper {
 
     private final AccountService accountService;
 
-    private final Mod97_10 mod9710;
+    private final ChecksumCalculator mod9710;
 
     private final PasswordEncoder passwordEncoder;
 
-    public CustomerMapper(AccountService accountService, Mod97_10 mod9710, PasswordEncoder passwordEncoder) {
+    public CustomerMapper(AccountService accountService, ChecksumCalculator mod9710, PasswordEncoder passwordEncoder) {
         this.accountService = accountService;
         this.mod9710 = mod9710;
         this.passwordEncoder = passwordEncoder;

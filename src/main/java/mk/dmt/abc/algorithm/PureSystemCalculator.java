@@ -8,22 +8,6 @@ public abstract class PureSystemCalculator {
     protected abstract boolean isDoubleCheckDigit();
 
     /**
-     * Verify if the given input is a protected code with valid check characters.
-     * @param input The input string that should be checked.
-     * @return Whether or not the input was successfully verified. False if the code was parsed but did not verify.
-     * @throws IllegalStateException Raised if an illegal character is encountered.
-     * @throws IllegalArgumentException Raised if the input string is too short.
-     */
-    public boolean verify(String input) throws IllegalStateException, IllegalArgumentException {
-        input = input.toUpperCase();
-        int numDigits = isDoubleCheckDigit() ? 2 : 1;
-        if(input.length() <= numDigits) throw new IllegalArgumentException("Input string too short!");
-
-        String dataOnly = input.substring(0, input.length() - numDigits);
-        return input.equals(compute(dataOnly));
-    }
-
-    /**
      * Compute check characters for the given input
      * @param input The input string that should be appended with a check digit.
      * @return The input string with the check digit appended.

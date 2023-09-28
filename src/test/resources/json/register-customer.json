@@ -1,0 +1,14 @@
+{
+  "name": "Test Test",
+  "username": "test",
+  "address": "Address",
+  "country": "MKD",
+  "dateOfBirth": "09-06-1969",
+  "document": {
+    "number": "ID123",
+    "type": "ID card",
+    "country": "MKD",
+    "issued": "01-01-1970",
+    "expiring": "01-01-2070"
+  }
+}

@@ -3,7 +3,7 @@ package mk.dmt.abc.algorithm;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Mod97_10 extends PureSystemCalculator {
+public class ChecksumCalculator extends PureSystemCalculator {
     @Override
     protected int getModulus() {
         return 97;
