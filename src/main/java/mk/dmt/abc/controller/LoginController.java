@@ -1,17 +1,16 @@
 package mk.dmt.abc.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import mk.dmt.abc.annotation.CommonApiResponse;
 import mk.dmt.abc.model.LoginRequest;
 import mk.dmt.abc.security.model.CustomerDetails;
-import mk.dmt.abc.service.LoginService;
 import org.springframework.http.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import mk.dmt.abc.security.JwtTokenUtil;
 
@@ -19,20 +18,20 @@ import mk.dmt.abc.security.JwtTokenUtil;
 @RequestMapping("/logon")
 public class LoginController {
 
-    private final LoginService loginService;
-
     private final AuthenticationManager authenticationManager;
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public LoginController(LoginService loginService,
-                           AuthenticationManager authenticationManager,
+    public LoginController(AuthenticationManager authenticationManager,
                            JwtTokenUtil jwtTokenUtil) {
-        this.loginService = loginService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
+    @Operation(summary = "Customer login.")
+    @ApiResponse(responseCode = "200", description = "Customer has successfully logged in.")
+    @CommonApiResponse
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> logon(@RequestBody LoginRequest request) {
         try {

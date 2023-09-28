@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Test Test\",\n    \"username\": \"test\",\n    \"address\": \"Address\",\n    \"country\": \"MKD\",\n    \"dateOfBirth\": \"09-06-1969\",\n    \"document\": {\n        \"number\": \"ID123\",\n        \"type\": \"ID card\",\n        \"country\": \"MKD\",\n        \"issued\": \"01-01-1970\",\n        \"expiring\": \"01-01-2070\"\n    }\n}",
+					"raw": "{\n    \"name\": \"Test Test\",\n    \"username\": \"test\",\n    \"address\": \"Address\",\n    \"country\": \"NL\",\n    \"dateOfBirth\": \"09-06-1969\",\n    \"document\": {\n        \"number\": \"ID123\",\n        \"type\": \"ID card\",\n        \"country\": \"NL\",\n        \"issued\": \"01-01-1970\",\n        \"expiring\": \"01-01-2070\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"w#Wrv<5u0!\"\n}",
+					"raw": "{\n    \"username\": \"test\",\n    \"password\": \")csHEZ&PCO\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,6 +77,54 @@
 					"path": [
 						"overview",
 						"NL95ABCB0000000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "country",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"code\": \"CZ\",\n  \"enabled\": true,\n  \"name\": \"Czechia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/country",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"country"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "country",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/country/CZ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"country",
+						"CZ"
 					]
 				}
 			},

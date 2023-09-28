@@ -50,10 +50,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-            //.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeRequests()
-            .antMatchers("/", "/login", "/logon", "/register", "/access-denied").permitAll()
+            .antMatchers("/", "/login", "/logon", "/register", "/access-denied", "/country").permitAll()
             .antMatchers(HttpMethod.GET, "/overview/**").hasAnyAuthority("customer");
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
